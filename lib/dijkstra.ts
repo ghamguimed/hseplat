@@ -79,9 +79,10 @@ export const findBestPath = (
     if (!current || current === endId) break;
     unvisited.delete(current);
 
-    const neighbors = adjacency.get(current) ?? [];
+    const currentId = current;
+    const neighbors = adjacency.get(currentId) ?? [];
     neighbors.forEach((edge) => {
-      const alt = (distances.get(current) ?? 0) + costForEdge(edge);
+      const alt = (distances.get(currentId) ?? 0) + costForEdge(edge);
       if (alt < (distances.get(edge.to) ?? Number.POSITIVE_INFINITY)) {
         distances.set(edge.to, alt);
         previous.set(edge.to, current);
