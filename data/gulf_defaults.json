@@ -1,0 +1,41 @@
+{
+  "globalParams": {
+    "road": {
+      "cost_per_km": 1.2,
+      "avg_speed_kmph": 65,
+      "fixed_fee": 120,
+      "dwell_hours": 6
+    },
+    "sea": {
+      "cost_per_km": 0.6,
+      "avg_speed_kmph": 30,
+      "fixed_fee": 500,
+      "dwell_hours": 24
+    }
+  },
+  "countryTemplate": {
+    "customs": {
+      "clearance_fee": 150,
+      "insurance_rate": 0.01,
+      "allocation_method": "by_value",
+      "default_duty_rate_pct": 0.05,
+      "default_vat_rate_pct": 0.05,
+      "groupRates": {},
+      "productRates": {}
+    },
+    "trade": {
+      "incoterms_allowed": ["EXW", "FOB", "CIF", "DAP"],
+      "required_documents": ["Invoice", "Packing List", "Certificate of Origin"],
+      "import_restrictions": [],
+      "export_restrictions": []
+    },
+    "regulations": [
+      {
+        "id": "gulf-general",
+        "title": "General Gulf Compliance",
+        "severity": "info",
+        "message": "Standard Gulf customs compliance applies."
+      }
+    ]
+  }
+}
