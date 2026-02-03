@@ -1,0 +1,102 @@
+{
+  "nodes": [
+    { "id": "factory-uae", "label": "Factory Dubai", "type": "factory", "lat": 25.0657, "lng": 55.1713 },
+    { "id": "port-jebel-ali", "label": "Port Jebel Ali", "type": "port", "lat": 25.011, "lng": 55.061 },
+    { "id": "port-dammam", "label": "Port Dammam", "type": "port", "lat": 26.4667, "lng": 50.1 },
+    { "id": "ksa", "label": "Saudi Arabia", "type": "country", "lat": 23.8859, "lng": 45.0792 },
+    { "id": "uae", "label": "United Arab Emirates", "type": "country", "lat": 23.4241, "lng": 53.8478 }
+  ],
+  "edges": [
+    { "id": "road-uae-ksa", "from": "uae", "to": "ksa", "mode": "road", "distance_km": 1200 },
+    { "id": "road-factory-port", "from": "factory-uae", "to": "port-jebel-ali", "mode": "road", "distance_km": 50 },
+    { "id": "sea-uae-ksa", "from": "port-jebel-ali", "to": "port-dammam", "mode": "sea", "distance_km": 980 },
+    { "id": "road-port-ksa", "from": "port-dammam", "to": "ksa", "mode": "road", "distance_km": 400 },
+    { "id": "road-uae-factory", "from": "uae", "to": "factory-uae", "mode": "road", "distance_km": 30 }
+  ],
+  "customsGroups": [
+    { "id": "electronics", "label": "Electronics" },
+    { "id": "food", "label": "Food & Beverage" },
+    { "id": "chemicals", "label": "Chemicals" }
+  ],
+  "productCatalog": [
+    { "id": "smartphones-8517", "label": "Smartphones", "hsCode": "8517", "defaultDeclaredValue": 280, "defaultCustomsGroupId": "electronics", "weight_kg": 0.4, "volume_m3": 0.002 },
+    { "id": "dates-0804", "label": "Dates", "hsCode": "0804", "defaultDeclaredValue": 25, "defaultCustomsGroupId": "food", "weight_kg": 1, "volume_m3": 0.001 },
+    { "id": "paint-3208", "label": "Industrial Paint", "hsCode": "3208", "defaultDeclaredValue": 75, "defaultCustomsGroupId": "chemicals", "weight_kg": 5, "volume_m3": 0.008 }
+  ],
+  "countryProfiles": [
+    {
+      "id": "uae",
+      "name": "United Arab Emirates",
+      "currency": "AED",
+      "customs": {
+        "clearance_fee": 150,
+        "insurance_rate": 0.01,
+        "allocation_method": "by_value",
+        "default_duty_rate_pct": 0.05,
+        "default_vat_rate_pct": 0.05,
+        "groupRates": {
+          "electronics": { "duty_rate_pct": 0.05, "vat_rate_pct": 0.05 },
+          "food": { "duty_rate_pct": 0.02, "vat_rate_pct": 0.0 }
+        },
+        "productRates": {}
+      },
+      "trade": {
+        "incoterms_allowed": ["EXW", "FOB", "CIF", "DAP"],
+        "required_documents": ["Invoice", "Packing List", "Certificate of Origin"],
+        "import_restrictions": ["Restricted chemicals require permits"],
+        "export_restrictions": []
+      },
+      "regulations": [
+        {
+          "id": "uae-chem",
+          "title": "Chemical pre-approval",
+          "severity": "warning",
+          "appliesToGroups": ["chemicals"],
+          "message": "Chemical imports require MSDS documentation."
+        }
+      ]
+    },
+    {
+      "id": "ksa",
+      "name": "Saudi Arabia",
+      "currency": "SAR",
+      "customs": {
+        "clearance_fee": 180,
+        "insurance_rate": 0.01,
+        "allocation_method": "by_value",
+        "default_duty_rate_pct": 0.05,
+        "default_vat_rate_pct": 0.15,
+        "groupRates": {},
+        "productRates": {}
+      },
+      "trade": {
+        "incoterms_allowed": ["EXW", "FOB", "CIF", "DAP"],
+        "required_documents": ["Invoice", "Packing List", "Certificate of Origin"],
+        "import_restrictions": ["Some electronics require SASO certification"],
+        "export_restrictions": []
+      },
+      "regulations": [
+        {
+          "id": "ksa-general",
+          "title": "SASO compliance",
+          "severity": "info",
+          "message": "Verify SASO compliance for regulated goods."
+        }
+      ]
+    }
+  ],
+  "globalParams": {
+    "road": {
+      "cost_per_km": 1.2,
+      "avg_speed_kmph": 65,
+      "fixed_fee": 120,
+      "dwell_hours": 6
+    },
+    "sea": {
+      "cost_per_km": 0.6,
+      "avg_speed_kmph": 30,
+      "fixed_fee": 500,
+      "dwell_hours": 24
+    }
+  }
+}
