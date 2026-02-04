@@ -7,6 +7,13 @@ npm install
 npm run dev
 ```
 
+If you see `'next' n’est pas reconnu` (Next command not found), ensure dependencies are installed:
+
+```bash
+npm install
+npx next build
+```
+
 ## Data files
 
 - Default Gulf data: `data/gulf_defaults.json`
